@@ -20,8 +20,10 @@ main() {
       giorni_del_mese = 31;
     // adesso giorni del mese rappresenta quanti giorni ha il mese m nell'anno a
     if (g == giorni_del_mese)
+      // ultimo giorno del mese
       printf("1/%d/%d\n", m + 1, a);
     else
+      // giorno generico
       printf("%d/%d/%d\n", g + 1, m, a);
   }
 }
