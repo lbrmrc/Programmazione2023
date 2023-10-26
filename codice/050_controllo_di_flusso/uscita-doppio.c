@@ -7,8 +7,7 @@ main() {
     for (j = 1; j <= 10; j++) {
       printf("%3d ", i * j);
       if (i * j > 50)
-        // qui vorrei terminare l'esecuzione
-        ;
+        continue;
     }
     printf("\n");
   }
