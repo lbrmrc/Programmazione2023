@@ -1,12 +1,12 @@
 #include <stdio.h>
 
-void logo(void) {
+logo() {
   printf("###############\n");
   printf("#   Rubrica   #\n");
   printf("###############\n");
 }
 
-int main(void) {
+main() {
   int scelta;
 
   logo();
