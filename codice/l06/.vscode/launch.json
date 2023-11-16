@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/a.out",
-            "args": ["<", "numeri.in"],
+            "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
