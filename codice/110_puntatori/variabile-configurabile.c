@@ -12,6 +12,7 @@ int main(void) {
   a = 1; b = 2;
   // *p (stessa espressione) coincide con a oppure con b;
   // si decide a tempo di esecuzione
+  *p = 3;
   printf("%d\n", *p);  
   return 0;
 }
