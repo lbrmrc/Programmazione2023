@@ -1,4 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+int mcd(int a, int b) {
+  while (a != b) {
+    if (a > b)
+      a = a - b;
+    else
+      b = b - a;
+  }
+  return a;
+}
 
 typedef struct {
   int numeratore;
@@ -7,42 +18,50 @@ typedef struct {
 
 Frazione frazione(int n, int d) {
   Frazione fr;
-  fr.numeratore = n;
-  fr.denominatore = d;
+  if (d == 0){
+    printf("Errore: denominatore nullo\n");
+    exit(1);
+  }
+
+  int m = mcd(n, d);
+  fr.numeratore = n / m;
+  fr.denominatore = d / m;
   return fr;
 }
 
-int numeratore(Frazione fr){
-    return fr.numeratore;
+int numeratore(Frazione fr) {
+  return fr.numeratore;
 }
 
-int denominatore(Frazione fr){
-    return fr.denominatore;
+int denominatore(Frazione fr) {
+  return fr.denominatore;
 }
 
-void stampaFrazionaria(Frazione fr){
-    printf("%d/%d", numeratore(fr), denominatore(fr));
+void stampaFrazionaria(Frazione fr) {
+  printf("%d/%d", numeratore(fr), denominatore(fr));
 }
 
-void stampaDecimale(Frazione fr){
-    printf("%f", (float)numeratore(fr)/denominatore(fr));
+void stampaDecimale(Frazione fr) {
+  printf("%f", (float)numeratore(fr) / denominatore(fr));
 }
 
 Frazione leggiFrazione(void) {
-    Frazione fr;
-    int n, d;
-    scanf("%d%d", &n, &d);
-    fr = frazione(n,d);
-    return fr;
+  Frazione fr;
+  int n, d;
+  scanf("%d%d", &n, &d);
+  fr = frazione(n, d);
+  return fr;
 }
 
 int main() {
   Frazione f1;
   Frazione f2;
-  f2 = frazione(3, 4);
+  f2 = frazione(10, 15);
   f1 = leggiFrazione();
   stampaFrazionaria(f1);
   printf("\n");
-  stampaDecimale(f2);
+  stampaFrazionaria(f2);
+  stampaDecimale(f1);
   printf("\n");
+  return 0;
 }
