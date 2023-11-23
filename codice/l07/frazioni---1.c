@@ -12,20 +12,20 @@ Frazione frazione(int n, int d) {
   return fr;
 }
 
-int numeratore(Frazione fr){
+int num(Frazione fr){
     return fr.numeratore;
 }
 
-int denominatore(Frazione fr){
+int den(Frazione fr){
     return fr.denominatore;
 }
 
 void stampaFrazionaria(Frazione fr){
-    printf("%d/%d", numeratore(fr), denominatore(fr));
+    printf("%d/%d", num(fr), den(fr));
 }
 
 void stampaDecimale(Frazione fr){
-    printf("%f", (float)numeratore(fr)/denominatore(fr));
+    printf("%f", (float)num(fr)/den(fr));
 }
 
 Frazione leggiFrazione(void) {
