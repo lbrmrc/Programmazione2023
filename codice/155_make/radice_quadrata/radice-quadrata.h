@@ -1,0 +1,1 @@
+float radq(float a);
