@@ -2,22 +2,25 @@
 #include <stdlib.h>
 
 int main() {
+  char nomefile[30];
   FILE* pf;
-  char nome[80];
   char c;
-  printf("Inserisci il nome del file\n");
-  scanf("%s", nome);
-  pf = fopen(nome, "rt");
+
+  printf("Nome del file?\n");
+  scanf("%s", nomefile);
+
+  pf = fopen(nomefile, "rt");
   if (pf == NULL) {
-    printf("Errore apertura file %s\n", nome);
+    printf("Errore apertura file %s\n", nomefile);
     exit(1);
   }
 
   while (fscanf(pf, "%c", &c) == 1)
     printf("%c", c);
 
-  if (fclose(pf) != 0) {
-    printf("Errore chiusura file %s\n", nome);
+  if (fclose(pf) != 0){
+    printf("errore chiusura file\n");
     exit(2);
   }
+  return 0;
 }

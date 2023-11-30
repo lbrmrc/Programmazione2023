@@ -1,3 +1,2 @@
-Ferrara
-Bologna
-FINE
+ferrara
+bologna

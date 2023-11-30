@@ -1,30 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define NPERSONE 100
 
 typedef struct {
-  char cognome[31];
-  char nome[31];
+  char cognome[50];
+  char nome[50];
   char sesso;
-  int anno;
+  int nascita;
 } Persona;
 
 int main() {
-  int dl;
-  Persona persone[NPERSONE];
   FILE* pf;
-  char s[2];
+  Persona persone[100];
+  char carattere[2];
+  int dl;
+
   pf = fopen("people.txt", "rt");
   if (pf == NULL) {
-    printf("Errore apertura file\n");
+    printf("Errore apertura\n");
     exit(1);
   }
+
   dl = 0;
-  while (dl < NPERSONE && fscanf(pf, "%s%s%s%d", persone[dl].cognome,
-                                 persone[dl].nome, s, &persone[dl].anno) == 4) {
-    persone[dl].sesso = s[0];
+  while (fscanf(pf, "%s%s%s%d", persone[dl].cognome, persone[dl].nome,
+                carattere, &persone[dl].nascita) == 4) {
+    persone[dl].sesso = carattere[0];
     dl++;
   }
+
   fclose(pf);
   return 0;
 }
