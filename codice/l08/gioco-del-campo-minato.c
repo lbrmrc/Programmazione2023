@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define NRIGHE 4
 #define NCOLONNE 6
@@ -21,7 +22,29 @@ typedef struct {
   Campo campo_minato;
 } Stato;
 
-void applica(Stato* pstato, Mossa mossa) {}
+void applica(Stato* pstato, Mossa mossa) {
+  pstato->campo_minato[mossa.riga][mossa.colonna].coperta = 0;
+}
+
+int sconfitta(Stato* ps) {
+  int i, j;
+  for (i = 0; i < NRIGHE; i++)
+    for (j = 0; j < NCOLONNE; j++)
+      if (ps->campo_minato[i][j].mina_presente &&
+          !ps->campo_minato[i][j].coperta)
+        return 1;
+  return 0;
+}
+
+int vittoria(Stato* ps) {
+  int i, j;
+  for (i = 0; i < NRIGHE; i++)
+    for (j = 0; j < NCOLONNE; j++)
+      if (!ps->campo_minato[i][j].mina_presente &&
+          ps->campo_minato[i][j].coperta)
+        return 0;
+  return !sconfitta(ps);
+}
 
 double rnd_dbl(double a, double b) {
   return a + (double)rand() / RAND_MAX * (b - a);
@@ -47,9 +70,23 @@ int mineAdiacenti(Campo c, int i, int j) {
   return nmine;
 }
 
+void leggi_mossa(Mossa* pm) {
+  char stringa[3];
+  // "b4"
+  do {
+    printf("Mossa?\n");
+    scanf("%s", stringa);
+  } while (strlen(stringa) != 2 || stringa[0] < 'a' ||
+           stringa[0] > 'a' + NRIGHE - 1 || stringa[1] < '0' ||
+           stringa[1] > '0' + NCOLONNE - 1);
+  pm->riga = stringa[0] - 'a';
+  pm->colonna = stringa[1] - '1';
+}
+
 void presenta_stato(Stato* ps) {
   int i, j;
   for (i = 0; i < NRIGHE; i++) {
+    printf("%c ", 'a' + i);
     for (j = 0; j < NCOLONNE; j++)
       if (ps->campo_minato[i][j].coperta)
         printf("#");
@@ -64,17 +101,26 @@ void presenta_stato(Stato* ps) {
       }
     printf("\n");
   }
+
+  printf("  ");
+  for (j = 1; j <= NCOLONNE; j++)
+    printf("%d", j);
+  printf("\n");
 }
 
 int main() {
   Stato s;
   Mossa m;
   inizializza(&s);
-    while (1) {
-      presenta_stato(&s);
-      leggi_mossa(&m);
-      applica(&s, m);
-    }
+  while (!vittoria(&s) && !sconfitta(&s)) {
+    presenta_stato(&s);
+    leggi_mossa(&m);
+    applica(&s, m);
+  }
+  if (vittoria(&s))
+    printf("Hai vinto\n");
+  else
+    printf("Hai perso\n");
   presenta_stato(&s);
   return 0;
 }
