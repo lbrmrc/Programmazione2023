@@ -26,22 +26,30 @@ void inizializza(Campo c) {
 
 int mineAdiacenti(Campo c, int i, int j) {
   int nmine = 0;
-  if (i - 1 >= 0 && j - 1 >= 0 && c[i - 1][j - 1] == '*')
-    nmine++;
-  if (i - 1 >= 0 && c[i - 1][j] == '*')
-    nmine++;
-  if (i - 1 >= 0 && j + 1 <= NCOLONNE - 1 && c[i - 1][j + 1] == '*')
-    nmine++;
-  if (j - 1 >= 0 && c[i][j - 1] == '*')
-    nmine++;
-  if (j + 1 <= NCOLONNE - 1 && c[i][j + 1] == '*')
-    nmine++;
-  if (i + 1 <= NRIGHE - 1 && j - 1 >= 0 && c[i + 1][j - 1] == '*')
-    nmine++;
-  if (i + 1 <= NRIGHE - 1 && c[i + 1][j] == '*')
-    nmine++;
-  if (i + 1 <= NRIGHE - 1 && j + 1 <= NCOLONNE - 1 && c[i + 1][j + 1] == '*')
-    nmine++;
+  int riga, colonna;
+  for (riga = i - 1; riga <= i + 1; riga++)
+    for (colonna = j - 1; colonna <= j + 1; colonna++)
+      if (riga >= 0 && riga < NRIGHE && colonna >= 0 && colonna < NCOLONNE &&
+          c[riga][colonna] == '*')
+        nmine++;
+
+  //   if (i - 1 >= 0 && j - 1 >= 0 && c[i - 1][j - 1] == '*')
+  //     nmine++;
+  //   if (i - 1 >= 0 && c[i - 1][j] == '*')
+  //     nmine++;
+  //   if (i - 1 >= 0 && j + 1 <= NCOLONNE - 1 && c[i - 1][j + 1] == '*')
+  //     nmine++;
+  //   if (j - 1 >= 0 && c[i][j - 1] == '*')
+  //     nmine++;
+  //   if (j + 1 <= NCOLONNE - 1 && c[i][j + 1] == '*')
+  //     nmine++;
+  //   if (i + 1 <= NRIGHE - 1 && j - 1 >= 0 && c[i + 1][j - 1] == '*')
+  //     nmine++;
+  //   if (i + 1 <= NRIGHE - 1 && c[i + 1][j] == '*')
+  //     nmine++;
+  //   if (i + 1 <= NRIGHE - 1 && j + 1 <= NCOLONNE - 1 && c[i + 1][j + 1] ==
+  //   '*')
+  //     nmine++;
 
   /// altri casi
   return nmine;
