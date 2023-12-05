@@ -1,22 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {
-  char nome[10];
-  float stipendio;
-} Impiegato;
+typedef struct
+{
+  char cognome[20];
+  float paga;
+} Dipendente;
 
-int main() {
-  FILE* pfb;
-  Impiegato im;
-  pfb = fopen("stipendi.dat", "rb");
-  if (pfb == NULL) {
+int main()
+{
+  Dipendente d;
+  FILE *pf;
+  pf = fopen("stipendi.dat", "rb");
+  if (pf == NULL)
+  {
     printf("Errore apertura\n");
     exit(1);
   }
-  while (fread(&im, sizeof(Impiegato), 1, pfb) == 1) {
-    printf("%s %.2f\n", im.nome, im.stipendio);
-  }
-  fclose(pfb);
+  while (fread(&d, sizeof(Dipendente), 1, pf) == 1)
+    printf("%s %f\n", d.cognome, d.paga);
+  fclose(pf);
   return 0;
 }

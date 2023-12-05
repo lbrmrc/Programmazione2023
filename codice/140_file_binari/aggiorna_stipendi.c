@@ -1,25 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {
-  char nome[10];
+typedef struct
+{
+  char nome[20];
   float stipendio;
-} Impiegato;
+} Record;
 
-int main() {
-  FILE* pfb;
-  Impiegato im;
-  pfb = fopen("stipendi.dat", "r+b");
-  if (pfb == NULL) {
-    printf("Errore apertura\n");
+int main()
+{
+  FILE *fp;
+  Record r;
+  fp = fopen("stipendi.dat", "r+b");
+  if (fp == NULL)
+  {
+    printf("Errore apertura file\n");
     exit(1);
   }
-  while (fread(&im, sizeof(Impiegato), 1, pfb) == 1)
-    if (im.stipendio < 1500) {
-      im.stipendio = im.stipendio * 1.1;
-      fseek(pfb, -sizeof(Impiegato), SEEK_CUR);
-      fwrite(&im, sizeof(Impiegato), 1, pfb);
-      fflush(pfb);
+
+  while (fread(&r, sizeof(Record), 1, fp) == 1)
+  {
+    if (r.stipendio < 1000.0)
+    {
+      r.stipendio = r.stipendio * 1.1;
+      fseek(fp, -sizeof(Record), SEEK_CUR);
+      fwrite(&r, sizeof(Record), 1, fp);
+      fflush(fp);
     }
-  fclose(pfb);
+  }
+  fclose(fp);
+  return 0;
 }
