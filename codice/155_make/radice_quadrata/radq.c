@@ -1,3 +1,5 @@
+#include "radq.h"
+
 // definizione
 float radq(float a) {
   float x = 1.0;
