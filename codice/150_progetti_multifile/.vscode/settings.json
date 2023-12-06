@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "math.h": "c"
+        "math.h": "c",
+        "stdio.h": "c",
+        "radq.h": "c"
     }
 }

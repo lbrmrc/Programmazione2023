@@ -1,16 +1,10 @@
 #include <stdio.h>
-#include <math.h> 
 
-float radq(float a);
+#include "radq.h"
 
-int main(void) {
+int main() {
   float a;
-  printf("Digita un numero\n");
+  printf("Inserisci un numero reale\n");
   scanf("%f", &a);
-  if (a <= 0) {
-    printf("%f e` negativo o nullo\n", a);
-    return -1;
-  }
-  printf("La radice quadrata di %.2f e` circa %f\n", a, radq(a));
-  return 0;
+  printf("%f\n", radq(a));
 }

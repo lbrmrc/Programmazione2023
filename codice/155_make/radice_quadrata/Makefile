@@ -1,12 +1,8 @@
-eseguibile: main.o funzioni-aritmetiche.o radice-quadrata.o
-	gcc -o eseguibile main.o funzioni-aritmetiche.o radice-quadrata.o -lm
+rq: main.o radq.o
+	gcc -g -o rq main.o radq.o
 
-# entry
-main.o: main.c funzioni-aritmetiche.h radice-quadrata.h
-	gcc -c main.c
+radq.o: radq.c
+	gcc -g -c radq.c
 
-funzioni-aritmetiche.o: funzioni-aritmetiche.c 
-	gcc -c funzioni-aritmetiche.c
-
-radice-quadrata.o: radice-quadrata.c funzioni-aritmetiche.h
-	gcc -c radice-quadrata.c
+main.o: main.c radq.h
+	gcc -g -c main.c
