@@ -7,4 +7,5 @@ int main(){
     reset(&c);
     incrementa(&c);
     printf("%d\n", valore(c));
+    return 0;
 }

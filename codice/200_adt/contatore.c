@@ -1,13 +1,13 @@
 #include "contatore.h"
 
-int valore(Contatore c) {
-  return c.valore;
+long valore(Contatore c) {
+  return c.numero;
 }
 
 void reset(Contatore *pc){
-    pc->valore = 0;
+    pc->numero = 0;
 }
 
 void incrementa(Contatore *pc){
-    pc->valore++;
+    pc->numero++;
 }

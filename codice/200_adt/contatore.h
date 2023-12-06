@@ -1,7 +1,7 @@
 typedef struct {
-  int valore;
+  long numero;
 } Contatore;
 
-int valore(Contatore c);
+long valore(Contatore c);
 void reset(Contatore *pc);
 void incrementa(Contatore *pc);
