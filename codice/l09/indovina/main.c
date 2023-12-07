@@ -12,6 +12,7 @@ int main()
     {
         scanf("%s", lettura);
         aggiorna_gioco(&gioco, lettura[0]);
+        stampa_gioco(&gioco);
     }
 
     if (vincente(&gioco))
