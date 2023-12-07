@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "gioco.h": "c"
+    },
+    "cmake.configureOnOpen": false
+}
