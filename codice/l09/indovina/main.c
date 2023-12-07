@@ -2,11 +2,13 @@
 
 #include "gioco.h"
 
-int main()
+int main(int argc, char *argv[])
 {
     char lettura[2];
     Gioco gioco;
-    inizializza_gioco(&gioco, 5);
+    int n_vite;
+    sscanf(argv[1], "%d", &n_vite);
+    inizializza_gioco(&gioco, n_vite);
 
     while (!finito(&gioco))
     {
@@ -18,7 +20,10 @@ int main()
     if (vincente(&gioco))
         printf("Hai vinto\n");
     else
+    {
         printf("Hai perso\n");
+        stampa_parola_segreta(&gioco);
+    }
 
     return 0;
 }
