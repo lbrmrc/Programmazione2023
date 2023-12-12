@@ -1,31 +1,31 @@
+// richiede all'utente la dimensione di un array
+
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
-  int dim;
-  float* v;
+int main()
+{
+  int dimensione; // sia fisica che logica
+  int *p;
   int i;
   printf("Quanti elementi?\n");
-  scanf("%d", &dim);
+  scanf("%d", &dimensione);
 
-  // riservo un'area di memoria di dimensione pari a dim float
-  v = (float*)malloc(sizeof(float) * dim);
-  if (v == NULL) {
-    printf("Impossibile allocare il vettore\n");
+  p = (int *)malloc(dimensione * sizeof(int));
+  if (p == NULL)
+  {
+    printf("errore allocazione memoria\n");
     exit(1);
   }
+  for (i = 0; i < dimensione; i++)
+    p[i] = i;
 
-  // assegno all'elemento di indice i il valore 1/(i+1);
-  for (i = 0; i < dim; i++)
-    v[i] = 1.0 / (i + 1);
-  // oppure *(v+i) = 1.0 / (i + 1);
+  for (i = 0; i < dimensione; i++)
+    printf("%d ", *(p + i));
+  printf("\n");
 
-  for (i = 0; i < dim; i++)
-    printf("%f\n", *(v + i));
+  free(p);
 
-  // libero la memoria che non serve più
-  free(v);
-  v = NULL;
-
+  printf("%d\n", p[5]);
   return 0;
 }

@@ -1,24 +1,20 @@
-#include <stdio.h>
 #include <string.h>
-#include <malloc.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-char *alloca_stringa(int n){
-    char *indirizzo= (char*)malloc(n*sizeof(char));
-    return indirizzo;
+
+char *alloca(int dimensione){
+    char *pc;
+    pc = (char*)malloc(dimensione);
+    return pc;
 }
-
-
-// ERRATO
-// char *alloca_stringa_locale(){
-//     char s[80];
-//     return s;
-// }
 
 int main(){
     char *s;
-    s = alloca_stringa(80);
-    scanf("%s", s);
-    printf("%d\n", strlen(s));
+    // alloca 100 byte con indirizzo s;
+    s = alloca(100); // somiglia a char s[100];
+    strcpy(s, "ferrara");
+    printf("%s\n", s);
     free(s);
     return 0;
 }
