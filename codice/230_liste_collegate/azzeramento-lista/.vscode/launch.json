@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/azzeramento",
+            "program": "${workspaceFolder}/azzeramento-lista",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
