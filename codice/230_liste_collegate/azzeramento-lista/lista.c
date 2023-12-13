@@ -4,19 +4,11 @@
 #include "lista.h"
 
 void azzera(Lista l) {
-    // ForEach (elemento<-0 , l)
-  while (l != NULL) {
-    l->dato = 0;
-    l = l->next;
-  }
+ 
 }
 
 void stampa(Lista l) {
-  while (l != NULL) {
-    printf("%d ", l->dato);
-    l = l->next;
-  }
-  printf("\n");
+  
 }
 
 // fa puntare pl a una lista non ordinata di n elementi (n <= 10)
