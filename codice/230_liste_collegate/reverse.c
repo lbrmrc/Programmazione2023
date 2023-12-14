@@ -4,42 +4,41 @@
 typedef int Dato;
 typedef struct nodo {
   Dato dato;
-  struct nodo* next;
+  struct nodo *next;
 } Nodo;
-typedef Nodo* Lista;
 
-void nuovaLista(Lista* pl) {
-  *pl = NULL;
-}
+typedef Nodo *Lista;
 
-void insTesta(Lista* pl, int d) {
-  Nodo* aux;
-  aux = (Nodo*)malloc(sizeof(Nodo));
+void insTesta(Lista *pl, Dato d) {
+  Nodo *aux = (Nodo *)malloc(sizeof(Nodo));
   aux->dato = d;
   aux->next = *pl;
   *pl = aux;
 }
 
-void listaCasuale(Lista* pl, int numeroElementi) {
-  int i;
-  nuovaLista(pl);
-  for (i = 0; i < numeroElementi; i++)
-    insTesta(pl, 1 + rand() % 9);
-}
-
-void reverse(Lista l1, Lista* pl2) {
-  nuovaLista(pl2);
-
-  while (l1 != NULL) {
+void reverse(Lista l1, Lista *pl2) {
+  *pl2 = NULL;
+  while (l1) {
     insTesta(pl2, l1->dato);
     l1 = l1->next;
   }
 }
 
+void stampa(Lista l) {
+  while (l) {
+    printf("%d ", l->dato);
+    l = l->next;
+  }
+  printf("\n");
+}
+
 int main() {
-  Lista l1;
+  Lista l1 = NULL;
   Lista l2;
-  listaCasuale(&l1, 5);
+  insTesta(&l1, 3);
+  insTesta(&l1, 2);
+  insTesta(&l1, 5);
+  stampa(l1);
   reverse(l1, &l2);
-  return 0;
+  stampa(l2);
 }
