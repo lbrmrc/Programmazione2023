@@ -4,23 +4,39 @@
 
 #include "listaAlimento.h"
 
-void caricaCalorie(char nomeFileBinario[], Lista* pl) {
+void insTesta(Lista *pl, Alimento d) {
+  Nodo *aux = (Nodo *)malloc(sizeof(Nodo));
+  aux->dato = d;
+  aux->next = *pl;
+  *pl = aux;
+}
+
+void caricaCalorie(char nomeFileBinario[], Lista *pl) {
   int numero;
-  FILE* fb;
+  FILE *fb;
+  Alimento record;
   fb = fopen(nomeFileBinario, "rb");
   if (fb == NULL) {
     printf("Impossibile aprire %s\n", nomeFileBinario);
     exit(3);
+    if (fb == NULL) {
+      printf("Impossibile aprire %s\n", nomeFileBinario);
+      exit(3);
+    }
   }
-  pl->n_elementi = fread(pl->dati, sizeof(Alimento), DIMENSIONE, fb);
+  *pl = NULL;
+  while (fread(&record, sizeof(Alimento), 1, fb) == 1)
+    insTesta(pl, record);
+
   fclose(fb);
 }
 
 float calorieAlimento(char nomeAlimento[], Lista l) {
-  int i;
-  for (i = 0; i < l.n_elementi; i++)
-    if (strcmp(nomeAlimento, l.dati[i].nome) == 0)
-      return l.dati[i].calorie;
-  printf("Alimento non trovato\n");
-  exit(4);
+  while (l != NULL) {
+    if (strcmp(l->dato.nome, nomeAlimento) == 0) // alimento trovato
+      return l->dato.calorie;
+    l = l->next; // l = coda di l
+  }
+  printf("Alimento %s non trovato\n", nomeAlimento);
+  exit(3);
 }

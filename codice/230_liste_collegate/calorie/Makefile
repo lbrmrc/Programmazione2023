@@ -1,5 +1,5 @@
-calcolo-calorie-pasto: main.o listaAlimento.o
-	gcc -g -o calcolo-calorie-pasto main.o listaAlimento.o 
+calorie: main.o listaAlimento.o
+	gcc -g -o calorie main.o listaAlimento.o 
 
 main.o: main.c listaAlimento.h
 	gcc -g -c main.c

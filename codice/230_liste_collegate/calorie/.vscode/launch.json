@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/calcolo-calorie-pasto",
+            "program": "${workspaceFolder}/calorie",
             "args": ["calorie.dat", "pasto.txt"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
