@@ -1,42 +1,42 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 typedef int Dato;
 typedef struct nodo {
   Dato dato;
-  struct nodo* next;
+  struct nodo *next;
 } Nodo;
-typedef Nodo* Lista;
+typedef Nodo *Lista;
 
-Lista* ricerca(Lista* pl) {
-  while (*pl)
-    pl = &(*pl)->next;
-  return pl;
+void stampa(Lista l) {
+  while (l != NULL) {
+    printf("%d\n", l->dato); // stampa della testa
+    l = l->next;             // aggiorno l con il valore della sua coda}
+  }
 }
 
-void insTesta(Lista* pl, Dato d) {
-  Nodo* aux = (Nodo*)malloc(sizeof(Nodo));
+void insTesta(Lista *pl, Dato d) {
+  Nodo *aux = (Nodo *)malloc(sizeof(Nodo));
+  if (aux == NULL) {
+    printf("Errore allocazione\n");
+    exit(1);
+  }
   aux->dato = d;
   aux->next = *pl;
   *pl = aux;
 }
 
-void insCoda(Lista* pl, Dato d) {
-  pl = ricerca(pl);
-  insTesta(pl, d);
-}
-
-Lista arrayToList(int v[], int dl) {
-  Lista l = NULL;
+Lista arrayToList(int a[], int dl) {
   int i;
-  for (i = 0; i < dl; i++)
-    insCoda(&l, v[i]);
+  Lista l = NULL;
+  for (i = dl - 1; i >= 0; i--) // dall'ultimo indice valido al primo
+    insTesta(&l, a[i]);
   return l;
 }
 
 int main() {
-  Lista l;
-  int a[] = {2, 5, 1, 0};
-
-  l = arrayToList(a, 4);
+  int a[3] = {6, 2, 3};
+  Lista l = arrayToList(a, 3);
+  stampa(l);
   return 0;
 }
