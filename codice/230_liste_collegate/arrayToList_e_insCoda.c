@@ -11,8 +11,8 @@ typedef Nodo *Lista;
 void stampa_ricorsiva(Lista l) {
   if (l == NULL) { // caso base
 
-  } else { // caso ricorsivo
-    printf("%d\n", l->dato); // stampa della testa
+  } else {                     // caso ricorsivo
+    printf("%d\n", l->dato);   // stampa della testa
     stampa_ricorsiva(l->next); // stampa della coda
   }
 }
@@ -39,6 +39,13 @@ void insCoda(Lista *pl, Dato d) {
   while (*pl != NULL)
     pl = &(*pl)->next;
   insTesta(pl, d);
+}
+
+Dato ennesimo_ricorsivo(Lista l, int posizione) {
+  if (posizione == 0 && l != NULL) // caso base
+    return l->dato;   // il primo elemento è la testa della lista
+  else 
+    return ennesimo_ricorsivo(l->next, posizione - 1); // caso ricorsivo
 }
 
 Dato ennesimo(Lista l, int posizione) {
@@ -68,7 +75,7 @@ int main() {
   int a[5] = {6, 4, 2, 5, 0};
   Lista l = arrayToList(a, 5);
   stampa_ricorsiva(l);
-  printf("quarto elemento: %d\n", ennesimo(l, 3));
+  printf("quarto elemento: %d\n", ennesimo_ricorsivo(l, 3));
   printf("decimo elemento: %d\n", ennesimo(l, 9));
   return 0;
 }
