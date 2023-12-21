@@ -17,9 +17,15 @@ int confrontoStringhe(char *parola1, char*parola2){
     // <0 se parola1 precede parola2
     // =0 se parola1 è uguale a parola2
     // >0 se parola2 precede parola1
+    
+    // se le lunghezze sono diverse
     if (strlen(parola1) != strlen(parola2))
+        // restituisco la differenza delle lunghezze
+        // in modo che sia negativa se parola1 è più lunga
+        // (cioè deve precedere parola 2)
         return strlen(parola2) - strlen(parola1);
     else
+        // se sono lunghe uguali valuto il confronto alfabetico
         return strcmp(parola1, parola2);
 }
 
