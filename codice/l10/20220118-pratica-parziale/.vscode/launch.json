@@ -5,7 +5,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/frequenze",
-            "args": ["testo.txt"],
+            "args": ["testo.txt", "was"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
